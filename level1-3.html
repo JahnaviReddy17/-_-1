@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temparature Converter</title>
+    <style>
+        body{
+            text-align: center;
+            background-color: burlywood;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        .mainbox{
+            background-color: beige;
+            width: 50%;
+            margin: 5%;
+            padding:5%;
+            margin-left:20%;
+            height: 40%;
+            border: solid rgba(144, 145, 151, 0.514) 7px;
+            border-radius: 3%;
+        }
+        .temp{
+            width:40%;
+            height: 1000px;
+            font-size: larger;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            margin: 15px;
+                        
+        }
+       
+        .dropdown{
+            height:45px;
+            font-size: larger;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            margin: 15px;
+        }
+        button{
+            display: block;
+            text-align: center;
+            margin-left: 44%;
+            margin-top: 3%;
+            height: 40px;
+            border-radius: 5px;
+        }
+        button:hover{
+            background-color: coral;
+            cursor: pointer;
+        }
+        .result {
+            display: block;
+            font-size: 25px;
+            font-style: bold;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            margin-top: 3%;
+    }   
+
+    </style>
+</head>
+<body>
+    <div class="mainbox">
+        <h1>Tempature Converter</h1>
+        <h2>Enter Temparature to convert to desired units</h2>
+        
+      <input type="number" id="tempo" placeholder="Enter here" size="40" ><br>
+        <select class="dropdown">
+            <option value="c">Celcius</option>
+            <option value="f">Farenheit</option>
+            <option value="k">Kelvin</option>
+        </select>
+        <button onclick="converter(document.getElementById('tempo').value)">CONVERT</button>
+        <span class="result"></span>
+        
+
+    </div>
+</body>
+</html>
+<script>
+    function converter(temp){
+        var d = document.querySelector('.dropdown');
+        var unit = d.value;
+        var f, k, c;
+        if( temp === ''){
+                var text = "Enter any number to find its conversions in different units!"
+        }
+        else{
+            if(unit === 'c'){
+                f = ((temp * 9) / 5 + 32).toFixed(2);
+                k = (parseFloat(temp) + 273.15).toFixed(2);
+                c = temp;
+            }
+            else if(unit === 'f'){
+                f = parseFloat(temp);
+                k = (((parseFloat(temp) - 32) * 5) / 9 + 273.15).toFixed(2);
+                c = (((parseFloat(temp) - 32) * 5) / 9).toFixed(2);
+            }
+            else{
+                f = (((parseFloat(temp) - 273.15) * 9) / 5 + 32).toFixed(2);
+                k = parseFloat(temp);
+                c = parseFloat(temp) - 273.15.toFixed(2);
+            }
+
+            var text = "IN CELSIUS: " + c + "°C\n" + "IN FAHRENHEIT: " + f + "°F\n" + "IN KELVIN: " + k + "K";
+    }
+        document.querySelector('.result').innerText = text;
+    }
+</script>
+
